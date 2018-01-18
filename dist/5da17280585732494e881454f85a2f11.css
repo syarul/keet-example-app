@@ -1,0 +1,40 @@
+#app {
+  margin: 10px;
+}
+#banner {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+}
+#routes {
+  display: flex;
+}
+#login,
+#protected {
+  width: 200px;
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #000;
+  background: #ddd;
+  text-align: center;
+}
+#login:hover,
+#protected:hover {
+  background: #eee;
+}
+#content {
+  display: flex;
+  margin-top: 10px;
+  padding: 6px;
+  width: -webkit-fill-available;
+  min-height: 100px;
+  background: #ccc;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+#loginForm {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "keet-example-app",
+  "version": "1.0.0",
+  "description": "keet.js single-page app sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel view/layout.pug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syarul/keet-example-app.git"
+  },
+  "keywords": [
+    "single-page"
+  ],
+  "author": "Shahrul Nizam Selamat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syarul/keet-example-app/issues"
+  },
+  "homepage": "https://github.com/syarul/keet-example-app#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-plugin-istanbul": "^4.1.5",
+    "stylus": "^0.54.5",
+    "babel-preset-env": "^1.6.1",
+    "keet": "^2.2.5-rc2",
+    "parcel-bundler": "^1.4.1",
+    "parcel-plugin-pug": "^0.2.4"
+  }
+}
