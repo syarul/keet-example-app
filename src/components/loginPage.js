@@ -1,5 +1,7 @@
 import Keet from 'keet'
 
+import renderProcessing from './renderProcessing'
+
 const cat = (...args) => [...args].join('')
 
 class Component extends Keet {
@@ -7,51 +9,60 @@ class Component extends Keet {
     super()
   }
 
-  _validateMyForm(){
+  _submit(){
     let inputs = this.vdom().querySelectorAll('input')
-
     let formData = ''
 
-    inputs.forEach((i, idx) => {
-      if(idx < 2) formData += i.name + '=' + i.value.trim() + '&'
-    })
+    inputs.forEach((i => formData += i.name + '=' + i.value.trim() + '&'))
 
     formData = formData.slice(0, -1)
 
-    log(formData)
+    console.trace(formData)
 
-    // str({
-    //   method: 'post',
-    //   contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-    //   body: formData,
-    // }).pipe(new fetchStream).pipe(this.processLoginData())
+    fetch('/login', {
+      method: 'post',
+      mode: 'same-origin',
+      credentials: 'same-origin',
+      cache: 'no-cache',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      body: formData
+    }).then(res => res.json())
+    .then(json => renderProcessing(json))
+  }
+  run(){
+    window.history.pushState({}, 'loginPage', 'login-page')
+    fetch('/login-page', {
+      credentials: 'same-origin'
+    })
   }
 
 }
+
+const app = new Component
 
 const obj = {
   template: '{{loginForm}}',
   loginForm: {
     tag: 'form',
     id: 'loginForm',
-    'onsubmit': 'event.preventDefault();validateMyForm()',
+    'onsubmit': 'event.preventDefault()',
     template: cat(
-      '<label><b>Username</b></label>',
-      '<input type="text" placeholder="Enter Username" name="uname" required>',
-      '<label><b>Password</b></label>',
-      '<input type="password" autocomplete="false" placeholder="Enter Password" name="psw" required>',
-      '<button type="submit">Login</button>',
+      '<label><b>Username(test)</b></label>',
+      '<input type="text" placeholder="Enter Username" name="username" required>',
+      '<label><b>Password(1234)</b></label>',
+      '<input type="password" autocomplete="false" placeholder="Enter Password" name="password" required>',
+      '<button k-click="submit()">Login</button>',
       '<label>',
-        '<input type="checkbox" checked="checked"> Remember me',
+        '<input type="checkbox" checked="checked" name="remember"> Remember me',
       '</label>'
     )
-  }
+  },
+  submit: app._submit.bind(app)
 }
 
-const app = new Component
-
-window.validateMyForm = app._validateMyForm.bind(app)
-
-// obj.validateMyForm = app._validateMyForm.bind(app)
-
-export default run => app.mount(obj).flush('content').link('content')
+export default () => {
+  app.mount(obj).flush('content').link('content')
+  app.run()
+}

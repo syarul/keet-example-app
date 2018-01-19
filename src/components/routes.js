@@ -7,11 +7,10 @@ class Component extends Keet {
   constructor() {
     super()
   }
-  _viewLoginPage() {
-    loginPage()
-  }
-  _viewProtectedPage(){
-    protectedPage()
+  runRoute(route){
+    // alert(route)
+    route == '/login-page' ? loginPage() : 
+    route == '/protected-page' ? protectedPage() : null
   }
 }
 
@@ -20,20 +19,22 @@ const obj = {
   login: {
     tag: 'div',
     id: 'login',
-    'k-click': 'viewLoginPage()',
+    'k-click': 'loginPage()',
     template: 'login'
   },
+  loginPage: loginPage,
   protected: {
     tag: 'div',
     id: 'protected',
-    'k-click': 'viewProtectedPage()',
+    'k-click': 'protectedPage()',
     template: 'protected'
-  }
+  },
+  protectedPage: protectedPage
 }
 
 const app = new Component
 
-obj.viewLoginPage = app._viewLoginPage.bind(app)
-obj.viewProtectedPage = app._viewProtectedPage.bind(app)
-
-export default run => app.mount(obj).flush('routes').link('routes')
+export default () => {
+  app.mount(obj).flush('routes').link('routes')
+  app.runRoute(window.uri)
+}

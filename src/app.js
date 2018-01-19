@@ -1,8 +1,6 @@
 import Keet from 'keet'
 import routes from './components/routes'
 
-window.log = console.log.bind(console)
-
 class App extends Keet {
   constructor() {
     super()
