@@ -1,23 +1,21 @@
-import Keet from 'keet'
+import Keet from '../../keet/keet'
 
 import renderProcessing from './renderProcessing'
-
-const cat = (...args) => [...args].join('')
 
 class Component extends Keet {
   constructor() {
     super()
   }
 
-  _submit(){
-    let inputs = this.vdom().querySelectorAll('input')
+  submit(){
+    let inputs = document.querySelectorAll('input')
     let formData = ''
 
     inputs.forEach((i => formData += i.name + '=' + i.value.trim() + '&'))
 
     formData = formData.slice(0, -1)
 
-    console.trace(formData)
+    // alert(formData)
 
     fetch('/login', {
       method: 'post',
@@ -43,26 +41,23 @@ class Component extends Keet {
 const app = new Component
 
 const obj = {
-  template: '{{loginForm}}',
   loginForm: {
     tag: 'form',
     id: 'loginForm',
     'onsubmit': 'event.preventDefault()',
-    template: cat(
-      '<label><b>Username(test)</b></label>',
-      '<input type="text" placeholder="Enter Username" name="username" required>',
-      '<label><b>Password(1234)</b></label>',
-      '<input type="password" autocomplete="false" placeholder="Enter Password" name="password" required>',
-      '<button k-click="submit()">Login</button>',
-      '<label>',
-        '<input type="checkbox" checked="checked" name="remember"> Remember me',
-      '</label>'
-    )
-  },
-  submit: app._submit.bind(app)
+    template: `
+      <label><b>Username(test)</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+        <label><b>Password(1234)</b></label>
+        <input type="password" autocomplete="false" placeholder="Enter Password" name="password" required>
+        <button k-click="submit()">Login</button>',
+        <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>`
+  }
 }
 
 export default () => {
-  app.mount(obj).flush('content').link('content')
+  app.mount(obj).link('content')
   app.run()
 }

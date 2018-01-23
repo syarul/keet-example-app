@@ -1,4 +1,4 @@
-import Keet from 'keet'
+import Keet from '../../keet/keet'
 
 import loginPage from './loginPage'
 import protectedPage from './protectedPage'
@@ -9,32 +9,32 @@ class Component extends Keet {
   }
   runRoute(route){
     // alert(route)
-    route == '/login-page' ? loginPage() : 
-    route == '/protected-page' ? protectedPage() : null
+    route == '/login-page' ? this.loginPage() : 
+    route == '/protected-page' ? this.protectedPage() : null
   }
 }
 
 const obj = {
-  template: '{{login}}{{protected}}',
   login: {
     tag: 'div',
     id: 'login',
     'k-click': 'loginPage()',
     template: 'login'
   },
-  loginPage: loginPage,
   protected: {
     tag: 'div',
     id: 'protected',
     'k-click': 'protectedPage()',
     template: 'protected'
-  },
-  protectedPage: protectedPage
+  }
 }
 
 const app = new Component
 
+app.loginPage = loginPage
+app.protectedPage = protectedPage
+
 export default () => {
-  app.mount(obj).flush('routes').link('routes')
+  app.mount(obj).link('routes')
   app.runRoute(window.uri)
 }
