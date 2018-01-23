@@ -1,14 +1,9 @@
-import Keet from 'keet'
+import Keet from '../keet/keet'
 import routes from './components/routes'
 
 class App extends Keet {
   constructor() {
     super()
-    this.greeting = 'Welcome to our spectacular web page with nothing special here.'
-    this.App = 'App'
-  }
-  change(res){
-  	this.greeting = res
   }
 }
 
@@ -18,7 +13,7 @@ app.mount({
 	banner: {
 		tag: 'h3',
 		id: 'banner',
-		template: 'Login {{App}}'
+		template: 'Test Routing App'
 	},
 	routes: {
 		tag: 'div',
@@ -27,14 +22,5 @@ app.mount({
 	content: {
 		tag: 'div',
 		id: 'content',
-		template: '{{greeting}}'
 	}
-}).link('app')//.cluster(routes)
-
-setTimeout(() => {
-	app.change('test')
-	app.App = 'awdadw'
-	log(app)
-}, 2000)
-
-export default app
+}).link('app').cluster(routes)

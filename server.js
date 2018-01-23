@@ -46,7 +46,9 @@ app.post('/login', (req, res) => {
 
 app.post('/logout', (req, res) => {
 	let data = cookieStore.get(req.signedCookies.foo)
-	cookieStore.delete(data)
+	if(data)
+		cookieStore.delete(req.signedCookies.foo)
+	log(cookieStore)
 	res.send(true)
 })
 

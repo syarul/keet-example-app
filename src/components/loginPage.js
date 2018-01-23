@@ -27,7 +27,7 @@ class Component extends Keet {
       },
       body: formData
     }).then(res => res.json())
-    .then(json => renderProcessing(json))
+    .then(json => renderProcessing(json, 'login'))
   }
   run(){
     window.history.pushState({}, 'loginPage', 'login-page')
@@ -50,7 +50,7 @@ const obj = {
         <input type="text" placeholder="Enter Username" name="username" required>
         <label><b>Password(1234)</b></label>
         <input type="password" autocomplete="false" placeholder="Enter Password" name="password" required>
-        <button k-click="submit()">Login</button>',
+        <button k-click="submit()">Login</button>
         <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>`

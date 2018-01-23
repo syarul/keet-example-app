@@ -6,22 +6,22 @@ class Component extends Keet {
     this.state = ''
   }
 
-  run(res){
+  run(res, type){
   	window.history.pushState({ login: res }, res ? 'success': 'failed', res ? 'success-page': 'failed-page')
-    this.state = res ? 'success login' : 'failed login'
+    this.state = res ? `success ${type}` : `failed ${type}`
   }
 }
 
 const obj = {
   processing: {
     tag: 'div',
-    template: 'login: {{state}}'
+    template: '{{state}}'
   }
 }
 
 const app = new Component
 
-export default res => {
+export default (res, type) => {
   app.mount(obj).link('content')
-  app.run(res)
+  app.run(res, type)
 }

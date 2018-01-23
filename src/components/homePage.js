@@ -3,19 +3,19 @@ import Keet from '../../keet/keet'
 class Component extends Keet {
   constructor() {
     super()
-    this.protected = ''
+    this.state = 'Welcome to our spectacular web page with nothing special here.'
   }
   run(res){
-    window.history.pushState({}, 'protectedPage', 'protected-page')
-    this.protected = res
+    window.history.pushState({}, 'keet-sample-app', '/')
+    if(res) this.state = res
   }
 }
 
 const obj = {
-  protectedPage: {
+  homePage: {
     tag: 'div',
-    id: 'protectedPage',
-    template: '{{protected}}'
+    id: 'homePage',
+    template: '{{state}}'
   }
 }
 
