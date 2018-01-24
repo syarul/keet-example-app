@@ -4,9 +4,7 @@
   "description": "keet.js single-page app sample",
   "main": "index.js",
   "scripts": {
-    "start": "parcel view/index.pug",
-    "build": "parcel build src/app.js && parcel build src/styles/base.styl && cp src/statics/favicon.ico dist/favicon.ico",
-    "js": "parcel build src/app.js"
+    "dev": "node server.js && webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -30,12 +28,20 @@
     "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-preset-env": "^1.6.1",
-    "keet": "file:keet",
-    "parcel-bundler": "^1.4.1",
-    "parcel-plugin-pug": "^0.2.4",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^2.30.1",
+    "pug-html-loader": "^1.1.5",
+    "style-loader": "^0.19.1",
     "stylus": "^0.54.5",
-    "uglify-es": "^3.3.7"
+    "stylus-loader": "^3.0.1",
+    "uglify-es": "^3.3.7",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }

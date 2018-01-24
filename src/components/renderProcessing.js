@@ -1,14 +1,15 @@
-import Keet from '../../keet/keet'
+import Keet from 'keet'
+import { app as routesApp } from 'components/routes'
 
 class Component extends Keet {
   constructor() {
     super()
     this.state = ''
   }
-
   run(res, type){
-  	window.history.pushState({ login: res }, res ? 'success': 'failed', res ? 'success-page': 'failed-page')
+  	window.history.pushState({}, res ? 'success': 'failed', res ? 'success-page': 'failed-page')
     this.state = res ? `success ${type}` : `failed ${type}`
+    routesApp.updateButton(type == 'login' ? 'logout' : 'login')
   }
 }
 

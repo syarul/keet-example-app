@@ -6,7 +6,6 @@ class Component extends Keet {
     this.state = 'Welcome to our spectacular web page with nothing special here.'
   }
   run(res){
-    window.history.pushState({}, 'keet-sample-app', '/')
     if(res) this.state = res
   }
 }

@@ -1,9 +1,16 @@
-import Keet from '../keet/keet'
-import routes from './components/routes'
+import Keet from 'keet'
+import routes from 'components/routes'
+import 'styles/base.styl'
+import router from './router'
 
 class App extends Keet {
   constructor() {
     super()
+  }
+  componentDidMount(){
+  	window.onpopstate = evt => {
+  		router()
+  	}
   }
 }
 

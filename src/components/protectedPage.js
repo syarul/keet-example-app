@@ -6,8 +6,7 @@ class Component extends Keet {
     this.protected = ''
   }
   run(res){
-    window.history.pushState({}, 'protectedPage', 'protected-page')
-    this.protected = res
+    this.protected = res ? 'has-login' : 'not-login'
   }
 }
 

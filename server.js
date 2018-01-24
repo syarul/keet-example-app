@@ -18,17 +18,20 @@ app.use(express.static(path.join(__dirname, '/dist')))
 
 let cookieStore = new Map()
 
-app.get('*', function(req, res) {
-    res.render('layout', {
-    	uri: req.url
-    })
-})
+// app.get('*', function(req, res) {
+//     res.render('layout', {
+//     	uri: req.url
+//     })
+// })
 
-app.post('/protected', (req, res) => res.send({ hasLogin: cookieStore.get(req.signedCookies.foo)}))
+app.post('/api/protected', (req, res) => {
+	log(cookieStore.get(req.signedCookies.foo))
+	res.send({ hasLogin: cookieStore.get(req.signedCookies.foo)})
+})
 
 const util = require('util')
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
 
 	let reply = req.body.username == 'test' && req.body.password == '1234' ? true : false
 
@@ -44,12 +47,10 @@ app.post('/login', (req, res) => {
 	res.send(reply)
 })
 
-app.post('/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
 	let data = cookieStore.get(req.signedCookies.foo)
-	if(data)
-		cookieStore.delete(req.signedCookies.foo)
-	log(cookieStore)
+	if(data) cookieStore.delete(req.signedCookies.foo)
 	res.send(true)
 })
 
-app.listen(8080, () => log('server listening at 8080'))
+app.listen(3000, () => log('server listening at 3000'))

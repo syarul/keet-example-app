@@ -6,11 +6,8 @@ class Component extends Keet {
   constructor() {
     super()
   }
-  run(res){
-    window.history.pushState({}, 'logoutPage', '/logout-page')
-  }
   logout(){
-    fetch('/logout', {
+    fetch('/api/logout', {
       method: 'post',
       mode: 'same-origin',
       credentials: 'same-origin',
@@ -35,5 +32,4 @@ const app = new Component
 
 export default res => {
   app.mount(obj).link('content')
-  app.run(res)
 }

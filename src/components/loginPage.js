@@ -1,6 +1,5 @@
-import Keet from '../../keet/keet'
-
-import renderProcessing from './renderProcessing'
+import Keet from 'keet'
+import renderProcessing from 'components/renderProcessing'
 
 class Component extends Keet {
   constructor() {
@@ -15,9 +14,7 @@ class Component extends Keet {
 
     formData = formData.slice(0, -1)
 
-    // alert(formData)
-
-    fetch('/login', {
+    fetch('/api/login', {
       method: 'post',
       mode: 'same-origin',
       credentials: 'same-origin',
@@ -28,12 +25,6 @@ class Component extends Keet {
       body: formData
     }).then(res => res.json())
     .then(json => renderProcessing(json, 'login'))
-  }
-  run(){
-    window.history.pushState({}, 'loginPage', 'login-page')
-    fetch('/login-page', {
-      credentials: 'same-origin'
-    })
   }
 
 }
@@ -59,5 +50,4 @@ const obj = {
 
 export default () => {
   app.mount(obj).link('content')
-  app.run()
 }
