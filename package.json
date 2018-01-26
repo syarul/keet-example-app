@@ -4,7 +4,8 @@
   "description": "keet.js single-page app sample",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js && webpack-dev-server"
+    "svr": "node server.js",
+    "dev": "webpack-dev-server -d"
   },
   "repository": {
     "type": "git",

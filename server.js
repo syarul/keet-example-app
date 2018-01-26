@@ -31,6 +31,26 @@ app.post('/api/protected', (req, res) => {
 
 const util = require('util')
 
+let users = new Map()
+
+app.post('/api/register', (req, res) => {
+
+	// let reply = req.body.username == 'test' && req.body.password == '1234' ? true : false
+
+	log(JSON.stringify(req.body, false, 2))
+
+	// let data = Math.random().toString(32)
+
+	// if(reply) {
+	// 	cookieStore.set(data, true)
+	// 	res.cookie('foo', data, { signed: true })
+	// } else {
+	// 	cookieStore.set(data, false)
+	// }
+
+	res.send(true)
+})
+
 app.post('/api/login', (req, res) => {
 
 	let reply = req.body.username == 'test' && req.body.password == '1234' ? true : false

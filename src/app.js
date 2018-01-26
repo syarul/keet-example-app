@@ -9,7 +9,8 @@ class App extends Keet {
   }
   componentDidMount(){
   	window.onpopstate = evt => {
-  		router()
+  		log('pop state')
+  		//router()
   	}
   }
 }

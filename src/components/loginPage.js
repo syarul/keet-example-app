@@ -39,10 +39,10 @@ const obj = {
     template: `
       <label><b>Username(test)</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>
-        <label><b>Password(1234)</b></label>
+      <label><b>Password(1234)</b></label>
         <input type="password" autocomplete="false" placeholder="Enter Password" name="password" required>
-        <button k-click="submit()">Login</button>
-        <label>
+      <button k-click="submit()">Login</button>
+      <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>`
   }

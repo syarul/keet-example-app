@@ -1,9 +1,9 @@
 import Keet from 'keet'
 
-import homePage from './homePage'
-import loginPage from './loginPage'
-import logoutPage from './logoutpage'
-import protectedPage from './protectedPage'
+// import homePage from './homePage'
+// import loginPage from './loginPage'
+// import logoutPage from './logoutpage'
+// import protectedPage from './protectedPage'
 
 import router from 'router'
 
@@ -17,6 +17,9 @@ class Component extends Keet {
   }
   protectedPage(){
     router('/protected-page')
+  }
+  registerPage(){
+    router('/register-page')
   }
   loginPage(){
     router('/login-page')
@@ -41,6 +44,12 @@ const obj = {
     id: 'protected',
     'k-click': 'protectedPage()',
     template: 'protected'
+  },
+  register: {
+    tag: 'div',
+    id: 'register',
+    'k-click': 'registerPage()',
+    template: 'register'
   },
   login: {
     tag: 'div',

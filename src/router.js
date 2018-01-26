@@ -2,6 +2,7 @@ import homePage from 'components/homePage'
 import loginPage from 'components/loginPage'
 import logoutPage from 'components/logoutpage'
 import protectedPage from 'components/protectedPage'
+import registerPage from 'components/registerPage'
 
 const authorize = () => {
   return new Promise((resolve, reject) => {
@@ -28,6 +29,10 @@ const routes = {
         protectedPage.call(null, auth)
       })
     }
+  },
+  '/register-page': {
+    page: 'register',
+    render: registerPage
   },
   '/login-page': {
     page: 'login',
